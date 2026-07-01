@@ -310,14 +310,20 @@ loader_main_path.write_text(loader_main)
 
 win32u_opengl_path = source_dir / "dlls" / "win32u" / "opengl.c"
 
-if win32u_opengl_path.exists():
+if not win32u_opengl_path.exists():
+    print("Skipping win32u OpenGL patch: dlls/win32u/opengl.c not found")
+else:
     win32u_opengl = win32u_opengl_path.read_text()
 
-    # keep the existing win32u OpenGL patch code here
+    old_egl_dlopen = """..."""
+    new_egl_dlopen = """..."""
+
+    if old_egl_dlopen in win32u_opengl:
+        win32u_opengl = win32u_opengl.replace(...)
+
+    # keep the rest of the existing OpenGL patch code here
 
     win32u_opengl_path.write_text(win32u_opengl)
-else:
-    print("Skipping win32u OpenGL patch: dlls/win32u/opengl.c not found")
 
 old_egl_dlopen = """    if (!(funcs->egl_handle = dlopen( SONAME_LIBEGL, RTLD_NOW | RTLD_GLOBAL )))\n    {\n        ERR( \"Failed to load %s: %s\\n\", SONAME_LIBEGL, dlerror() );\n        return FALSE;\n    }\n"""
 
