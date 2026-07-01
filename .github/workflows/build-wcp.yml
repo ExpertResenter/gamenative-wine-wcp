@@ -13,7 +13,9 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  WCP_GN_WINE_REF: wine-11.3
+# was  WCP_GN_WINE_REF: wine-11.3
+  WCP_GN_WINE_REPO: "https://github.com/GameNative/proton-wine"
+  WCP_GN_WINE_REF: "proton_11.0"
 
 jobs:
   build:
