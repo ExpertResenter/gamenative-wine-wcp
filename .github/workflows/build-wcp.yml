@@ -89,7 +89,7 @@ jobs:
       - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: gamenative-wine-arm64ec
+          name: gamenative-wine-arm64ec-MGSVTPPfix
           path: out/*
           retention-days: 30
 
